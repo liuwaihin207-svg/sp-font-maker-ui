@@ -1,4 +1,4 @@
-SPFMUI
+## SPFMUI
 
 Turn your handwriting into a sitelen pona font!
 
@@ -16,7 +16,8 @@ A graphical user interface for [SP Font Maker](https://github.com/KelseyHigham/s
 
 ## Requirements
 
-- [FontForge](https://fontforge.org/en-US/downloads/) (must be installed separately)
+- [FontForge](https://fontforge.org/en-US/downloads/)
+- potrace (should come with FontForge)
 - sp-font-maker from Waso Keli
 
 ## What it does
