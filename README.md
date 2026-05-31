@@ -18,7 +18,7 @@ A graphical user interface for [SP Font Maker](https://github.com/KelseyHigham/s
 
 - [FontForge](https://fontforge.org/en-US/downloads/)
 - potrace (should come with FontForge)
-- [sp-font-maker] (https://github.com/wasokeli/sp-font-maker/blob/dev/docs/contributing.md) from Waso Keli
+- [sp-font-maker](https://github.com/wasokeli/sp-font-maker/blob/dev/docs/contributing.md) from Waso Keli
 
 ## What it does
 
