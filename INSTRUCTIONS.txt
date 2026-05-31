@@ -1,0 +1,29 @@
+SPFMUI - Sitelen Pona Font Maker User Interface
+
+QUICK START:
+
+MAC USERS:
+1. Double-click "setup_mac.command" (one time only)
+2. Double-click "launch_mac.command" (every time)
+
+WINDOWS USERS:
+1. Double-click "setup_windows.bat" (one time only)
+2. Double-click "launch_windows.bat" (every time)
+
+REQUIREMENTS:
+- Internet connection (first time only)
+- FontForge must be installed separately:
+  Mac: https://fontforge.org/en-US/downloads/mac/
+  Windows: https://fontforge.org/en-US/downloads/windows/
+
+TROUBLESHOOTING:
+- If setup fails, open Terminal/CMD and run:
+  pip install customtkinter pillow
+  git clone https://github.com/KelseyHigham/sp-font-maker
+  cd sp-font-maker && pip install -e .
+
+- If launch fails, make sure Python is installed:
+  https://python.org
+
+Made by jan Maku/Makopi
+Based on SP Font Maker by Waso Keli
