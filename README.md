@@ -17,8 +17,8 @@ A graphical user interface for [SP Font Maker](https://github.com/KelseyHigham/s
 ## Requirements
 
 - [FontForge](https://fontforge.org/en-US/downloads/)
-- potrace (should come with FontForge)
-- [sp-font-maker](https://github.com/wasokeli/sp-font-maker/blob/dev/docs/contributing.md) from Waso Keli
+- potrace (should come with FontForge) ^
+- sp-font-maker installation instructions say that creating a virtual environment is optional. Make sure it is not one of your options for this to run properly (basically don't make a venv D:)
 
 ## What it does
 
