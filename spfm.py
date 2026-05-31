@@ -6,18 +6,9 @@ import sys
 import os
 import shutil
 
-
-# ========== COLOR THEME ==========
-# bg #2a214a (dark purple)
-# mg #303078 (medium blue-purple)
-# other #0055ff (bright blue)
-# important #ffc800 (gold/yellow)
-
-# Set appearance mode and colors
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
 
-# Custom color mappings
 BG_COLOR = "#2a214a"
 MG_COLOR = "#303078"
 OTHER_COLOR = "#0055ff"
@@ -28,12 +19,10 @@ IMPORTANT_COLOR = "#ffc800"
 def get_handwrite_path():
     """Find handwrite executable anywhere on the system"""
 
-    # Method 1: Check if it's in PATH (most common)
     handwrite_in_path = shutil.which('handwrite')
     if handwrite_in_path:
         return handwrite_in_path
 
-    # Method 2: Search common locations
     search_paths = [
         os.path.expanduser('~/Desktop/sp-font-maker/.venv/bin/handwrite'),
         os.path.expanduser('~/Desktop/sp-font-maker/venv/bin/handwrite'),
@@ -65,10 +54,8 @@ class CustomWordsInput:
         self.num_slots = num_slots
         self.slot_entries = []
 
-        # Configure parent window colors
         parent.configure(fg_color=BG_COLOR)
 
-        # Create scrollable frame with custom colors
         self.canvas = ctk.CTkScrollableFrame(
             parent,
             width=1000,
@@ -79,7 +66,6 @@ class CustomWordsInput:
         )
         self.canvas.pack(pady=10, padx=10, fill="both", expand=True)
 
-        # Title
         title = ctk.CTkLabel(
             self.canvas,
             text="o nimi e nimi sin sina",
@@ -88,7 +74,6 @@ class CustomWordsInput:
         )
         title.grid(row=0, column=0, columnspan=2, pady=10)
 
-        # Instructions
         instructions = ctk.CTkLabel(
             self.canvas,
             text="o lukin e lipu SINA lon poka pilin e lipu nanpa lon poka ante.\n o nimi e nimi sin e sitelen sina. o nimi ala e ijo weka. ona li kama _.",
@@ -98,7 +83,7 @@ class CustomWordsInput:
         )
         instructions.grid(row=1, column=0, columnspan=2, pady=5)
 
-        # === LEFT COLUMN: User's scanned image (CROPPED TO BOTTOM) ===
+        # === LEFT COLUMN: User's image ===
         user_frame = ctk.CTkFrame(
             self.canvas,
             fg_color=MG_COLOR,
@@ -118,13 +103,11 @@ class CustomWordsInput:
         try:
             user_img = Image.open(user_image_path)
 
-            # Crop to bottom 2/5 of the image (40% from bottom)
             width, height = user_img.size
-            crop_top = int(height * 0.6)  # Start at 60% down (keep bottom 40%)
+            crop_top = int(height * 0.6)
             crop_bottom = height
             cropped_img = user_img.crop((0, crop_top, width, crop_bottom))
 
-            # Resize for display
             cropped_img.thumbnail((450, 300))
             user_ctk_img = ctk.CTkImage(light_image=cropped_img, dark_image=cropped_img,
                                         size=(cropped_img.width, cropped_img.height))
@@ -136,7 +119,7 @@ class CustomWordsInput:
             error_label = ctk.CTkLabel(user_frame, text=f"Could not load image: {e}")
             error_label.pack()
 
-        # === RIGHT COLUMN: Numbered reference image ===
+        # === RIGHT COLUMN: reference image ===
         ref_frame = ctk.CTkFrame(
             self.canvas,
             fg_color=MG_COLOR,
@@ -175,7 +158,7 @@ class CustomWordsInput:
             error_label = ctk.CTkLabel(ref_frame, text=f"Error loading reference: {e}")
             error_label.pack()
 
-        # === INPUT GRID (below both images) ===
+        # === INPUT GRID ===
         input_frame = ctk.CTkFrame(self.canvas, fg_color="transparent")
         input_frame.grid(row=3, column=0, columnspan=2, pady=20, sticky="ew")
 
@@ -187,7 +170,7 @@ class CustomWordsInput:
         )
         input_title.pack()
 
-        # Custom layout: right-aligned rows
+        # right-align
         slot_layout = [
             [1, 2],
             [3, 4, 5, 6, 7, 8, 9, 10, 11],
@@ -249,11 +232,9 @@ class SPFontMaker:
         self.window.geometry("800x900")
         self.window.configure(fg_color=BG_COLOR)
 
-        # Variables
         self.image_path = None
         self.custom_words_string = None
 
-        # Title
         title = ctk.CTkLabel(
             self.window,
             text="lipu SPFM",
@@ -270,7 +251,6 @@ class SPFontMaker:
         )
         subtitle.pack()
 
-        # Import Button
         self.import_btn = ctk.CTkButton(
             self.window,
             text="o luka e lipu nimi sina",
@@ -283,7 +263,6 @@ class SPFontMaker:
         )
         self.import_btn.pack(pady=20)
 
-        # Image Preview
         self.preview_label = ctk.CTkLabel(
             self.window,
             text="sitelen li lon ala",
@@ -294,7 +273,6 @@ class SPFontMaker:
         )
         self.preview_label.pack(pady=10)
 
-        # Font Name
         name_label = ctk.CTkLabel(
             self.window,
             text="Font Name:",
@@ -311,7 +289,6 @@ class SPFontMaker:
         )
         self.font_name.pack(pady=5)
 
-        # Designer Name
         designer_label = ctk.CTkLabel(
             self.window,
             text="Designer:",
@@ -354,7 +331,6 @@ class SPFontMaker:
             hover_color=MG_COLOR
         ).pack(side="left", padx=5)
 
-        # Map Custom Words Button
         self.map_btn = ctk.CTkButton(
             self.window,
             text="o nimi e nimi sin",
@@ -367,7 +343,6 @@ class SPFontMaker:
         )
         self.map_btn.pack(pady=10)
 
-        # Generate Button
         self.generate_btn = ctk.CTkButton(
             self.window,
             text="o pali e nasin!",
@@ -380,7 +355,6 @@ class SPFontMaker:
         )
         self.generate_btn.pack(pady=20)
 
-        # Progress Text Box
         self.progress = ctk.CTkTextbox(
             self.window,
             height=150,
@@ -425,11 +399,9 @@ class SPFontMaker:
         input_window.title("o nimi e nimi sin")
         input_window.geometry("1200x800")
         input_window.configure(fg_color=BG_COLOR)
-
-        # Create the input grid with user's image path
+        
         self.custom_input = CustomWordsInput(input_window, self.image_path, num_slots=25)
 
-        # Save button
         save_btn = ctk.CTkButton(
             input_window,
             text="o awen e nimi o pini e lipu",
